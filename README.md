@@ -2,6 +2,10 @@
 
 Turns a Google Ads search terms report into negative-keyword and new-keyword suggestions that a person reviews and approves, then exports files for Google Ads Editor. The agent never connects to or changes an ad account.
 
+![SQR agent pipeline](docs/pipeline.svg)
+
+**How it works.** Code does everything that can be decided by rules: it checks the input, keeps only generic campaigns, and matches the brand, competitor and retailer lists. Only the terms no rule can decide go to the AI, which judges product relevance (A: fits this ad group, B: belongs in another ad group, C: too broad, D: unrelated). Code then verifies every AI answer, a person approves or rejects every suggestion, and the agent exports files for Google Ads Editor. Uploading them to the account is done by a person.
+
 Status: **prototype, stages 1–3 of 5**. Built and tested so far:
 
 - `src/legacy.js`: code reproduction of the original SQR Excel template (columns E, G, H, I).
