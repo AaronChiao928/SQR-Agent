@@ -1,0 +1,85 @@
+{
+  "profileVersion": 1,
+  "brand": "DEWALT",
+  "productDomain": "Power tools and accessories for professional and DIY users (drills, hammers, saws, sanders, grinders)",
+  "notes": "Lists drafted from general knowledge and approved by the process owner (October 2026). Not verified market research.",
+
+  "campaigns": {
+    "typePatterns": { "generic": "_search_generic$" },
+    "processedTypes": ["generic"],
+    "marketPattern": "_\\d{2}_([a-z]{2})_[a-z]{2}_ga_"
+  },
+
+  "sharedNegativeLists": [
+    { "name": "Generic - brand, competitor & retailer negatives (NL+BE)", "markets": ["nl", "be"] }
+  ],
+
+  "lists": {
+    "brand": [
+      { "term": "dewalt", "mode": "substring" },
+      { "term": "dewald", "mode": "substring", "note": "Misspelling, counts as brand (D4)" },
+      { "term": "d[cw]\\p{L}*\\d[\\p{L}\\p{N}]*", "mode": "pattern", "note": "Model numbers: dc/dw + letters + digits, e.g. dch273, dws780, dcmht564n" },
+      { "term": "flexvolt", "mode": "substring", "note": "Product line" },
+      { "term": "powerstack", "mode": "substring", "note": "Product line" },
+      { "term": "xr", "mode": "word", "note": "Product line; short, so whole word only" }
+    ],
+    "competitor": [
+      { "term": "bosch", "mode": "substring" },
+      { "term": "makita", "mode": "substring" },
+      { "term": "beta", "mode": "word", "note": "Whole word: 'beta' is the start of Dutch 'betaalbare'" },
+      { "term": "rubi", "mode": "word" },
+      { "term": "milwaukee", "mode": "substring" },
+      { "term": "metabo", "mode": "substring" },
+      { "term": "hilti", "mode": "substring" },
+      { "term": "festool", "mode": "substring" },
+      { "term": "ryobi", "mode": "substring" },
+      { "term": "hikoki", "mode": "substring" },
+      { "term": "einhell", "mode": "substring" },
+      { "term": "worx", "mode": "substring" },
+      { "term": "mafell", "mode": "substring" },
+      { "term": "ferm", "mode": "word" },
+      { "term": "powerplus", "mode": "substring" },
+      { "term": "aeg", "mode": "word", "note": "Also an appliance brand" },
+      { "term": "hitachi", "mode": "substring", "note": "Power tools now sold as HiKOKI; also an electronics brand" },
+      { "term": "skil", "mode": "word", "note": "Whole word: avoid 'skill'" },
+      { "term": "dremel", "mode": "substring" },
+      { "term": "parkside", "mode": "substring", "note": "Lidl own brand" },
+      { "term": "black+decker", "mode": "substring", "note": "Same parent company as DEWALT; treated as competitor (separate campaigns)" },
+      { "term": "black & decker", "mode": "word" },
+      { "term": "black and decker", "mode": "word" },
+      { "term": "black decker", "mode": "word" },
+      { "term": "stanley", "mode": "word", "note": "Same parent company; runs its own campaigns" }
+    ],
+    "retailer": [
+      { "term": "toolnation", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "gamma", "mode": "word", "markets": ["nl", "be"] },
+      { "term": "action", "mode": "word", "markets": ["nl", "be"] },
+      { "term": "klium", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "karwei", "mode": "substring", "markets": ["nl"] },
+      { "term": "praxis", "mode": "word", "markets": ["nl"] },
+      { "term": "hornbach", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "hubo", "mode": "word", "markets": ["be"] },
+      { "term": "brico", "mode": "word", "markets": ["be"], "note": "Covers 'brico plan-it'; whole word to avoid 'bricolage'" },
+      { "term": "toolstation", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "bouwmaat", "mode": "substring", "markets": ["nl"] },
+      { "term": "fixami", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "coolblue", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "amazon", "mode": "word", "markets": ["nl", "be"] },
+      { "term": "lidl", "mode": "word", "markets": ["nl", "be"] },
+      { "term": "aldi", "mode": "word", "markets": ["nl", "be"] },
+      { "term": "bol.com", "mode": "word", "markets": ["nl", "be"], "note": "Not plain 'bol' (Dutch word)" },
+      { "term": "bolcom", "mode": "substring", "markets": ["nl", "be"] },
+      { "term": "marktplaats", "mode": "substring", "markets": ["nl", "be"], "note": "Second-hand marketplace" }
+    ]
+  },
+
+  "rules": {
+    "brand":      { "enabled": true, "negativeForm": "trigger", "level": "shared_list", "matchType": "broad" },
+    "competitor": { "enabled": true, "negativeForm": "trigger", "level": "shared_list", "matchType": "broad" },
+    "retailer":   { "enabled": true, "negativeForm": "trigger", "level": "shared_list", "matchType": "broad" },
+    "A": { "addKeyword": true, "keywordMatchTypes": ["phrase", "exact"] },
+    "B": { "negative": { "negativeForm": "whole_term", "level": "ad_group", "matchType": "broad" }, "addKeyword": true, "keywordMatchTypes": ["phrase", "exact"] },
+    "C": { "options": ["negative_ad_group", "negative_shared_list", "keep"], "matchType": "broad", "allowBulk": true },
+    "D": { "negative": { "negativeForm": "whole_term", "level": "shared_list", "matchType": "broad" } }
+  }
+}

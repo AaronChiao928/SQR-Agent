@@ -1,0 +1,18 @@
+{
+  "name": "sqr-agent",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Prototype agent that turns a Google Ads search terms report into reviewable negative and new keyword suggestions.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "test": "node --test",
+    "parity": "node src/cli.js parity",
+    "check": "node src/cli.js check data/demo/nl-search-terms-export.csv",
+    "rules": "node src/cli.js rules data/demo/nl-search-terms-export.csv",
+    "diff": "node src/cli.js diff",
+    "classify": "node --env-file=.env src/cli.js classify data/demo/nl-search-terms-export.csv"
+  }
+}
